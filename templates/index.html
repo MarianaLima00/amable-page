@@ -14,14 +14,14 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
-            color: #4a0e32; /* Cor vinho */
+            color:  #6a040f; /* Cor vinho */
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
         header {
-            background-color: #4a0e32; /* Cor vinho */
+            background-color:  #6a040f; /* Cor vinho */
             color: #fbc02d; /* Cor amarelo */
             padding: 15px;
             display: flex;
@@ -107,12 +107,12 @@
 
         .produto p {
             font-size: 18px;
-            color: #4a0e32; /* Cor vinho */
+            color:  #6a040f; /* Cor vinho */
             margin: 10px 0;
         }
 
         footer {
-            background-color: #4a0e32; /* Cor vinho */
+            background-color: #6a040f; /* Cor vinho */
             color: #fbc02d; /* Cor amarelo */
             text-align: center;
             padding: 10px;
@@ -182,6 +182,45 @@
         button:hover {
             background-color: #33211c; /* Cor mais escura para o botão */
         }
+
+        .search-container {
+            position: relative;
+        }
+
+        #searchInput {
+            padding: 10px;
+            border: 2px solid #6a040f; /* Cor vinho */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .suggestions {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 0;
+            border: 2px solid #4a0e32; /* Cor vinho */
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none; /* Escondido por padrão */
+            position: absolute;
+            background-color: #6A040F;
+            z-index: 1;
+        }
+
+        .suggestions li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestions li:hover {
+            background-color: #6A040F; /* Muda a cor ao passar o mouse */
+        }
+
+        #searchInput:focus + .suggestions {
+            display: block; /* Mostra as sugestões ao focar no campo */
+        }
+
     </style>
 
     <script>
@@ -198,65 +237,93 @@
     </script>
 </head>
 <body>
-    <header>
-        <h1>Amable Gráfica</h1>
-        <nav>
-            <ul>
-                <li><a onclick="showSection('#sobreSection')"><i class="fas fa-question-circle"></i></a></li>
-                <li><a onclick="showSection('#loginSection')"><i class="fas fa-user"></i></a></li
-                <li><a onclick="showSection('#carrinhoSection')"><i class="fas fa-shopping-cart"></i></a></li>
-                <li><a onclick="showSection('#homeSection')"><i class="fas fa-home"></i></a></li>
-            </ul>
-        </nav>
-    </header>
+   <header>
+    <h1>Amable Gráfica</h1>
+    <nav>
+        <ul>
+            <img src="{{url_for('static',filename='img/logo.jpeg')}}" alt="Logo" style="width: 80px; height: auto; margin-right: 40px;">
+            <li><a onclick="showSection('#sobreSection')"><i class="fas fa-question-circle"></i></a></li>
+            <li><a onclick="showSection('#loginSection')"><i class="fas fa-user"></i></a></li>
+            <li><a onclick="showSection('#carrinhoSection')"><i class="fas fa-shopping-cart"></i></a></li>
+            <li><a onclick="showSection('#mainContent')"><i class="fas fa-home"></i></a></li>
+        </ul>
+    </nav>
+    <div class="search-container">
+        <input type="text" placeholder="O que você está procurando?" id="searchInput">
+        <ul id="suggestions" class="suggestions">
+            <li>Camiseta Personalizada</li>
+            <li>Caneca Personalizada</li>
+            <li>Chaveiro Personalizado</li>
+            <li>Quadro Personalizado</li>
+        </ul>
+    </div>
+</header>
 
     <!-- Seção Principal -->
     <main id="mainContent">
-        <h2>Itens recomendados</h2>
+        <h2>Bem-vindo à Gráfica Amable</h2>
+        <p>Aqui você encontra produtos personalizados para todas as ocasiões!</p>
         <div class="produtos">
             <div class="produto">
-                <img src="camiseta.jpg" alt="Camiseta Personalizada">
-                <p>Camiseta Personalizada</p>
+                <img src="https://via.placeholder.com/150" alt="Camiseta Personalizada">
+                <h3>Camiseta Personalizada</h3>
+                <p>R$ 39,90</p>
+                <button>Adicionar ao Carrinho</button>
             </div>
             <div class="produto">
-                <img src="chaveiro.jpg" alt="Chaveiro Personalizado">
-                <p>Chaveiro Personalizado</p>
+                <img src="https://via.placeholder.com/150" alt="Copo Personalizado">
+                <h3>Copo Personalizado</h3>
+                <p>R$ 24,90</p>
+                <button>Adicionar ao Carrinho</button>
             </div>
             <div class="produto">
-                <img src="caneca.jpg" alt="Caneca Personalizada">
-                <p>Caneca Personalizada</p>
+                <img src="https://via.placeholder.com/150" alt="Chaveiro Personalizado">
+                <h3>Chaveiro Personalizado</h3>
+                <p>R$ 14,90</p>
+                <button>Adicionar ao Carrinho</button>
             </div>
         </div>
     </main>
 
     <!-- Seção Sobre -->
     <section id="sobreSection">
-        <h2>Sobre a Amable</h2>
-        <p>
-            Amable é a gráfica especializada para você. Abrange diversos tipos de serviços como: Canecas personalizadas,
-            quadros, polaroids, camisetas, chaveiros e muito mais! São muitas opções para presentear alguém querido,
-            surpreender colaboradores em uma empresa e até mesmo para consumo próprio.
-        </p>
-        <p>
-            Amable é uma empresa que te escuta e te entrega o melhor resultado. Amable surgiu com o objetivo de levar as pessoas
-            alegria, sofisticação e criatividade. Nossos produtos são de extrema qualidade e são produzidos com muita dedicação,
-            visando sempre a escolha da personalização do cliente.
-        </p>
-        <p>
-            Inspirado nas duas linguagens do amor: Atos de serviço e dar presentes.
-        </p>
+        <h2>Sobre Nós</h2>
+        <p>A Gráfica Amable é especializada em produtos personalizados para atender todas as suas necessidades. Qualidade e criatividade são nosso lema!</p>
+        <br>
+        <p>A Amable é a gráfica que se dedica a tornar suas ideias realidade.
+            Com uma ampla variedade de serviços, como canecas personalizadas, quadros, polaroids,
+            camisetas e chaveiros, ela oferece soluções perfeitas para todos os momentos.
+        <br>
+        <p>Se você deseja surpreender alguém especial, agradar colaboradores em sua empresa ou até mesmo se mimar com um produto exclusivo,
+        a Amable tem tudo o que você precisa! Mais do que apenas uma gráfica, a Amable é uma parceira que
+        valoriza suas necessidades e desejos.
+        Aqui, sua voz é ouvida, e cada detalhe é pensado para garantir que
+        você receba o melhor resultado possível.
+        Se você busca qualidade, personalização e um toque especial, a Amable é a escolha certa!</p>
+
     </section>
 
     <!-- Seção Carrinho -->
     <section id="carrinhoSection">
-        <h2>Carrinho de Compras</h2>
-        <div class="produto">
-            <p>Camiseta Personalizada - R$ 59,90</p>
+        <h2>Carrinho</h2>
+        <div class="produtos">
+            <div class="produto">
+                <h3>Camiseta Personalizada</h3>
+                <p>R$ 39,90</p>
+                <button>Remover do Carrinho</button>
+            </div>
+            <div class="produto">
+                <h3>Copo Personalizado</h3>
+                <p>R$ 24,90</p>
+                <button>Remover do Carrinho</button>
+            </div>
+            <div class="produto">
+                <h3>Chaveiro Personalizado</h3>
+                <p>R$ 14,90</p>
+                <button>Remover do Carrinho</button>
+            </div>
         </div>
-        <div class="produto">
-            <p>Chaveiro Personalizado - R$ 19,99</p>
-        </div>
-        <p>Total: R$ 79,89</p>
+        <p>Total: R$ 78,70</p>
         <button>Finalizar Compra</button>
     </section>
 
@@ -264,24 +331,18 @@
     <section id="loginSection">
         <h2>Login</h2>
         <form>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome">
-
             <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" required>
 
-            <label for="data">Data de Nascimento:</label>
-            <input type="date" id="data" name="data">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required>
 
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem"></textarea>
-
-            <button type="submit">Enviar</button>
+            <button type="submit">Entrar</button>
         </form>
     </section>
 
     <footer>
-        <p>Gráfica Amable &copy; 2024</p>
+        <p>&copy; 2024 Gráfica Amable. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
