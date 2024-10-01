@@ -1,10 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>minha pagina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica Amable</title>
+    <!-- Importando Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Importando a fonte Freestyle Script do Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Freestyle+Script&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #4a0e32; /* Cor vinho */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4a0e32; /* Cor vinho */
+            color: #fbc02d; /* Cor amarelo */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 48px;
+            font-family: 'Freestyle Script', cursive; /* Aplicando a fonte Freestyle Script */
+            text-shadow: 2px 2px #333;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #fbc02d; /* Cor amarelo */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center; /* Alinha verticalmente */
+        }
+
+        nav ul li a:hover {
+            color: #fff; /* Muda para branco ao passar o mouse */
+        }
+
+        nav ul li a .fa-shopping-cart {
+            margin-right: 8px; /* Espaço entre o ícone e o texto */
+        }
+
+        main {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f1f1f1; /* Fundo suave para contraste */
+            min-height: 80vh; /* Ocupa pelo menos 80% da altura da tela */
+        }
+
+        h2 {
+            color: #4a0e32; /* Cor vinho */
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .produtos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .produto {
+            border: 2px solid #4a0e32; /* Cor vinho */
+            padding: 15px;
+            width: 220px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .produto img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 2px solid #4a0e32;
+            margin-bottom: 10px;
+        }
+
+        .produto p {
+            font-size: 18px;
+            color: #4a0e32; /* Cor vinho */
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #4a0e32; /* Cor vinho */
+            color: #fbc02d; /* Cor amarelo */
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 5px;
+        }
+
+        /* Esconder todas as seções por padrão */
+        #sobreSection, #carrinhoSection, #loginSection {
+            display: none;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #4a0e32;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-top: 10px;
+            text-align: left;
+            font-weight: bold;
+            color: #4a0e32; /* Cor vinho */
+        }
+
+        input[type="text"], input[type="email"], input[type="date"], textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #4a0e32;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+            color: #4a0e32;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #4a0e32;
+            color: #fbc02d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #33211c; /* Cor mais escura para o botão */
+        }
+    </style>
+
+    <script>
+        function showSection(sectionId) {
+            // Esconder todas as seções
+            document.querySelector('#mainContent').style.display = 'none';
+            document.querySelector('#sobreSection').style.display = 'none';
+            document.querySelector('#carrinhoSection').style.display = 'none';
+            document.querySelector('#loginSection').style.display = 'none';
+
+            // Mostrar a seção selecionada
+            document.querySelector(sectionId).style.display = 'block';
+        }
+    </script>
 </head>
 <body>
-   <h1>Minha</h1>
+    <header>
+        <h1>Amable Gráfica</h1>
+        <nav>
+            <ul>
+                <li><a onclick="showSection('#sobreSection')"><i class="fas fa-question-circle"></i></a></li>
+                <li><a onclick="showSection('#loginSection')"><i class="fas fa-user"></i></a></li
+                <li><a onclick="showSection('#carrinhoSection')"><i class="fas fa-shopping-cart"></i></a></li>
+                <li><a onclick="showSection('#homeSection')"><i class="fas fa-home"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção Principal -->
+    <main id="mainContent">
+        <h2>Itens recomendados</h2>
+        <div class="produtos">
+            <div class="produto">
+                <img src="camiseta.jpg" alt="Camiseta Personalizada">
+                <p>Camiseta Personalizada</p>
+            </div>
+            <div class="produto">
+                <img src="chaveiro.jpg" alt="Chaveiro Personalizado">
+                <p>Chaveiro Personalizado</p>
+            </div>
+            <div class="produto">
+                <img src="caneca.jpg" alt="Caneca Personalizada">
+                <p>Caneca Personalizada</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Seção Sobre -->
+    <section id="sobreSection">
+        <h2>Sobre a Amable</h2>
+        <p>
+            Amable é a gráfica especializada para você. Abrange diversos tipos de serviços como: Canecas personalizadas,
+            quadros, polaroids, camisetas, chaveiros e muito mais! São muitas opções para presentear alguém querido,
+            surpreender colaboradores em uma empresa e até mesmo para consumo próprio.
+        </p>
+        <p>
+            Amable é uma empresa que te escuta e te entrega o melhor resultado. Amable surgiu com o objetivo de levar as pessoas
+            alegria, sofisticação e criatividade. Nossos produtos são de extrema qualidade e são produzidos com muita dedicação,
+            visando sempre a escolha da personalização do cliente.
+        </p>
+        <p>
+            Inspirado nas duas linguagens do amor: Atos de serviço e dar presentes.
+        </p>
+    </section>
+
+    <!-- Seção Carrinho -->
+    <section id="carrinhoSection">
+        <h2>Carrinho de Compras</h2>
+        <div class="produto">
+            <p>Camiseta Personalizada - R$ 59,90</p>
+        </div>
+        <div class="produto">
+            <p>Chaveiro Personalizado - R$ 19,99</p>
+        </div>
+        <p>Total: R$ 79,89</p>
+        <button>Finalizar Compra</button>
+    </section>
+
+    <!-- Seção Login -->
+    <section id="loginSection">
+        <h2>Login</h2>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome">
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="data">Data de Nascimento:</label>
+            <input type="date" id="data" name="data">
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem"></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Gráfica Amable &copy; 2024</p>
+    </footer>
 </body>
 </html>
+
